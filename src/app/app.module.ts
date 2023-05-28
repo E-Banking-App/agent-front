@@ -7,21 +7,25 @@ import {MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SigninComponent } from './pages/signin/signin.component'
 import { PasswordComponent } from './pages/password/password.component';
-import { ClientComponent } from './pages/client/client.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateClientComponent } from './pages/create-client/create-client.component';
-
+import { ClientsComponent } from './pages/clients/clients.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 const routes: Routes = [
   { path: '', component: SigninComponent },
   { path: 'password', component: PasswordComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'client', component: ClientComponent },
-  { path: '**', component: NotfoundComponent }
+  { path: 'create-client', component: CreateClientComponent },
+  { path: 'clients', component: ClientsComponent },
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({
@@ -29,12 +33,12 @@ const routes: Routes = [
     AppComponent,
     HomeComponent,
     PasswordComponent,
-    ClientComponent,
     NotfoundComponent,
     SigninComponent,
     NavbarComponent,
     DialogComponent,
-    CreateClientComponent
+    CreateClientComponent,
+    ClientsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,10 @@ const routes: Routes = [
     MaterialModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    MatSelectModule,
+    MatSortModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

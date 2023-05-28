@@ -1,6 +1,18 @@
 <app-navbar></app-navbar>
+<title>Welcome Back</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+  <body>
+    <div class="welcome-container">
+      <span class="material-icons welcome-icon">verified_user</span>
+      <h2 class="welcome-heading">Welcome Back!</h2>
+      <p class="welcome-message">You are authenticated to the JABAK LAH APP!</p>
+    </div>
+  </body>
 
-<br />
+
+
+<!-- <br />
 
 <div class="filter">
   <h2>CLIENTS</h2>
@@ -57,7 +69,7 @@
     <tr mat-header-row *matHeaderRowDef="columnsClients"></tr>
     <tr mat-row *matRowDef="let row; columns: columnsClients"></tr>
 
-    <!-- Row shown when there is no matching data. -->
+    <!-- Row shown when there is no matching data.
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">
         No data matching the filter "{{ input.value }}"
@@ -68,4 +80,4 @@
     [pageSizeOptions]="[5, 10, 25, 50]"
     aria-label="Select page of users"
   ></mat-paginator>
-</div>
+</div> -->
