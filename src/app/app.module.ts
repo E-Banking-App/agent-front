@@ -13,6 +13,7 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CreateClientComponent } from './pages/create-client/create-client.component';
 
 
 const routes: Routes = [
@@ -32,7 +33,8 @@ const routes: Routes = [
     NotfoundComponent,
     SigninComponent,
     NavbarComponent,
-    DialogComponent
+    DialogComponent,
+    CreateClientComponent
   ],
   imports: [
     BrowserModule,
