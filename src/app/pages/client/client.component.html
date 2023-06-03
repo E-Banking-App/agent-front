@@ -11,20 +11,11 @@
           <div>
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Phone Number</mat-label>
-              <input
-                formControlName="phoneNumber"
-                matInput
-                required
-                placeholder="Enter Phone Number"
-              />
-              <mat-error
-                *ngIf="clientForm.get('phoneNumber')?.errors?.['required']"
-              >
+              <input formControlName="phoneNumber" matInput required placeholder="Enter Phone Number" />
+              <mat-error *ngIf="clientForm.get('phoneNumber')?.errors?.['required']">
                 Phone Number is Required
               </mat-error>
-              <mat-error
-                *ngIf="clientForm.get('phoneNumber')?.hasError('minlength')"
-              >
+              <mat-error *ngIf="clientForm.get('phoneNumber')?.hasError('minlength')">
                 Phone Number must be at least 10 characters long
               </mat-error>
             </mat-form-field>
@@ -32,15 +23,8 @@
           <div>
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>First Name</mat-label>
-              <input
-                formControlName="firstName"
-                matInput
-                required
-                placeholder="Enter First Name"
-              />
-              <mat-error
-                *ngIf="clientForm.get('firstName')?.errors?.['required']"
-              >
+              <input formControlName="firstName" matInput required placeholder="Enter First Name" />
+              <mat-error *ngIf="clientForm.get('firstName')?.errors?.['required']">
                 First Name is Required
               </mat-error>
             </mat-form-field>
@@ -48,15 +32,8 @@
           <div>
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Last Name</mat-label>
-              <input
-                formControlName="lastName"
-                matInput
-                required
-                placeholder="Enter Last Name"
-              />
-              <mat-error
-                *ngIf="clientForm.get('lastName')?.errors?.['required']"
-              >
+              <input formControlName="lastName" matInput required placeholder="Enter Last Name" />
+              <mat-error *ngIf="clientForm.get('lastName')?.errors?.['required']">
                 Last Name is Required
               </mat-error>
             </mat-form-field>
@@ -64,11 +41,7 @@
           <div>
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Email</mat-label>
-              <input
-                formControlName="email"
-                matInput
-                placeholder="Enter Email"
-              />
+              <input formControlName="email" matInput placeholder="Enter Email" />
               <mat-error *ngIf="clientForm.get('email')?.errors?.['email']">
                 Enter a Valid Address Email
               </mat-error>
@@ -93,12 +66,7 @@
           <!-- ---------------------------------------------------------------------------------------------------- -->
         </div>
         <div>
-          <button
-            style="height: 50px"
-            mat-flat-button
-            color="primary"
-            class="full-width form-submit"
-          >
+          <button style="height: 50px" mat-flat-button color="primary" class="full-width form-submit">
             Submit
           </button>
         </div>
