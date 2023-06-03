@@ -12,11 +12,19 @@
     padding: 20px;
   }
   
+  .list {
+    width: 200%; /* Set the width to double the width of other input fields */
+  }
+
   .header {
     text-align: center;
   }
   
   .full-width {
+    width: 100%;
+  }
+
+  .dropdown-container{
     width: 100%;
   }
   
