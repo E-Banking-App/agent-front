@@ -43,15 +43,11 @@ export class CreateClientComponent {
     username: new FormControl('', [Validators.required, Validators.minLength(10)]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
-<<<<<<< HEAD:src/app/pages/client/client.component.ts
     email: new FormControl('', [Validators.email]),
 
     /////////////////// plafond non ajouté////////////////////////////////////////
     // plafond: new FormControl('', [Validators.required]),
 
-=======
-    email: new FormControl('', [ Validators.email]),
->>>>>>> 6b6bd6b9722996d53f11866f0ea03322fb28fd5f:src/app/pages/create-client/create-client.component.ts
   })
 
   onSubmit() {
