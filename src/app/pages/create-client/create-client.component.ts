@@ -7,12 +7,22 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 
+interface Account {
+  value: number;
+  viewValue: string;
+}
 @Component({
-  selector: 'app-client',
-  templateUrl: './client.component.html',
-  styleUrls: ['./client.component.scss']
+  selector: 'app-create-client',
+  templateUrl: './create-client.component.html',
+  styleUrls: ['./create-client.component.scss']
 })
-export class ClientComponent {
+export class CreateClientComponent {
+  accounts: Account[] = [
+    {value: 200, viewValue: 'Compte 200'},
+    {value: 5000, viewValue: 'Compte 5000'},
+    {value: 20000, viewValue: 'Compte 20000'},
+  ];
+
   constructor(private api: ClientService, private _snackBar: MatSnackBar) { }
 
   hide = true;
@@ -28,23 +38,20 @@ export class ClientComponent {
     });
   }
 
-  /////////////////// plafond non ajouté////////////////////////////////////////
-
-  // plafondOptions = [
-  //   { label: 'Hssab 1 - Plafond: 200 DH', value: 200 },
-  //   { label: 'Hssab 2 - Plafond: 5000 DH', value: 5000 },
-  //   { label: 'Hssab 3 - Plafond: 20000 DH', value: 20000 },
-  // ];
-
   clientForm = new FormGroup({
-    phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    account: new FormControl('', [Validators.required]),
+    username: new FormControl('', [Validators.required, Validators.minLength(10)]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
+<<<<<<< HEAD:src/app/pages/client/client.component.ts
     email: new FormControl('', [Validators.email]),
 
     /////////////////// plafond non ajouté////////////////////////////////////////
     // plafond: new FormControl('', [Validators.required]),
 
+=======
+    email: new FormControl('', [ Validators.email]),
+>>>>>>> 6b6bd6b9722996d53f11866f0ea03322fb28fd5f:src/app/pages/create-client/create-client.component.ts
   })
 
   onSubmit() {

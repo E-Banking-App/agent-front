@@ -1,0 +1,32 @@
+/* Apply styles to the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th {
+    font-weight: bold;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  td {
+    padding: 12px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Apply styles to the paginator */
+  .mat-paginator {
+    margin-top: 20px;
+  }
+  
+  /* Apply styles to the h1 heading */
+  h1 {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
