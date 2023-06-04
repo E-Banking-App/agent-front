@@ -6,6 +6,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { CreateClientService } from 'src/app/services/create-client.service';
 
 interface Account {
   value: number;
@@ -17,13 +18,14 @@ interface Account {
   styleUrls: ['./create-client.component.scss']
 })
 export class CreateClientComponent {
+  
   accounts: Account[] = [
-    {value: 200, viewValue: 'Compte 200'},
-    {value: 5000, viewValue: 'Compte 5000'},
-    {value: 20000, viewValue: 'Compte 20000'},
+    { value: 200, viewValue: 'Compte 200' },
+    { value: 5000, viewValue: 'Compte 5000' },
+    { value: 20000, viewValue: 'Compte 20000' },
   ];
 
-  constructor(private api: ClientService, private _snackBar: MatSnackBar) { }
+  constructor(private createClientService: CreateClientService, private _snackBar: MatSnackBar) { }
 
   hide = true;
 
@@ -39,7 +41,7 @@ export class CreateClientComponent {
   }
 
   clientForm = new FormGroup({
-    account: new FormControl('', [Validators.required]),
+    ceiling: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required, Validators.minLength(10)]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
@@ -50,20 +52,55 @@ export class CreateClientComponent {
 
   })
 
+  // onSubmit() {
+  //   console.log(this.clientForm.value);
+
+  //   if (this.clientForm.valid) {
+
+  //     this.createClientService.creatClient(this.clientForm.value).subscribe({
+  //       next: (result: any) => {
+  //         console.log(result);
+  //         this.clientForm.reset()
+  //         this.openSnackBar("Client Added Successfully", "Success")
+  //       },
+  //       error: (err: any) => {
+  //         console.error(err)
+  //         this.openSnackBar("Something went wrong", "Error")
+  //       }
+  //     })
+  //   }
+  // }
+
+
   onSubmit() {
     console.log(this.clientForm.value);
+
     if (this.clientForm.valid) {
-      this.api.postClient(this.clientForm.value).subscribe({
-        next: (result: any) => {
-          console.log(result);
+
+      this.createClientService.creatClient(this.clientForm.value).subscribe(
+        response => {
+          console.log('Client saved:', response);
+          // Handle success if needed
+
           this.clientForm.reset()
           this.openSnackBar("Client Added Successfully", "Success")
         },
-        error: (err: any) => {
-          console.error(err)
+
+        error => {
+
+          console.error('Error saving client:', error);
           this.openSnackBar("Something went wrong", "Error")
         }
-      })
+      );
+
+      console.log(this.clientForm.value);
+
     }
+
+
+
   }
+
+
+
 }

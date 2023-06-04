@@ -27,7 +27,7 @@ export class SigninComponent {
       
       this.signinService.authenticate(this.signinForm.value).subscribe(
         response => {
-          console.log('Client saved:', response);
+          console.log('Client Authenticate:', response);
           // Handle success if needed
 
           // Assuming the token is returned as 'token' in the response
@@ -40,7 +40,7 @@ export class SigninComponent {
         },
 
         error => {
-          console.error('Error saving client:', error);
+          console.error('Error Authenticate client:', error);
           // Handle error if needed
 
         }
