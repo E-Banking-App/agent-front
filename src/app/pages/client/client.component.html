@@ -4,32 +4,18 @@
   <mat-card>
     <mat-card-content>
       <div class="header">
-        <h2>Create a new Payement Account</h2>
+        <h2>Add a Client</h2>
       </div>
       <form (ngSubmit)="onSubmit()" name="clientForm" [formGroup]="clientForm">
         <div class="form-container">
           <div>
-            <mat-form-field class="list">
-              <mat-label>Payement Accounts</mat-label>
-              <mat-select formControlName="ceiling" >
-                <mat-option *ngFor="let account of accounts" [value]="account.value">
-                  {{account.viewValue}}
-                </mat-option>
-              </mat-select>
-              <mat-error *ngIf="clientForm.get('account')?.errors?.['required']">
-                Account Type is Required
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <br />
-          <div>
             <mat-form-field class="full-width" appearance="outline">
               <mat-label>Phone Number</mat-label>
-              <input formControlName="username" matInput required placeholder="Enter Phone Number" />
-              <mat-error *ngIf="clientForm.get('username')?.errors?.['required']">
+              <input formControlName="phoneNumber" matInput required placeholder="Enter Phone Number" />
+              <mat-error *ngIf="clientForm.get('phoneNumber')?.errors?.['required']">
                 Phone Number is Required
               </mat-error>
-              <mat-error *ngIf="clientForm.get('username')?.hasError('minlength')">
+              <mat-error *ngIf="clientForm.get('phoneNumber')?.hasError('minlength')">
                 Phone Number must be at least 10 characters long
               </mat-error>
             </mat-form-field>
@@ -62,9 +48,27 @@
             </mat-form-field>
           </div>
 
+          <!--_____________________________________ plafond non ajouté _______________________________________________ -->
+          <!-- <div>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Plafond</mat-label>
+              <mat-select formControlName="plafond">
+                <mat-option
+                  *ngFor="let option of plafondOptions"
+                  [value]="option.value"
+                >
+                  {{ option.label }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div> -->
+
+          <!-- ____________________________________________________________________________________________________ -->
         </div>
         <div>
-          <button style="height: 50px;" mat-flat-button color="primary" class="full-width form-submit">Submit</button>
+          <button style="height: 50px" mat-flat-button color="primary" class="full-width form-submit">
+            Submit
+          </button>
         </div>
       </form>
     </mat-card-content>

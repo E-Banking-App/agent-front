@@ -8,16 +8,11 @@
         <div>
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Email</mat-label>
-            <input
-              formControlName="email"
-              matInput
-              required
-              placeholder="Enter Email"
-            />
-            <mat-error *ngIf="signinForm.get('email')?.errors?.['required']">
+            <input formControlName="username" matInput required placeholder="Enter Email" />
+            <mat-error *ngIf="signinForm.get('username')?.errors?.['required']">
               Email Address is Required
             </mat-error>
-            <mat-error *ngIf="signinForm.get('email')?.errors?.['email']">
+            <mat-error *ngIf="signinForm.get('username')?.errors?.['username']">
               Enter a Valid Address Email
             </mat-error>
           </mat-form-field>
@@ -25,37 +20,20 @@
         <div>
           <mat-form-field class="full-width" appearance="outline">
             <mat-label>Password</mat-label>
-            <input
-              formControlName="password"
-              matInput
-              [type]="hide ? 'password' : 'text'"
-              required
-              placeholder="Enter Password"
-            />
-            <button
-              mat-icon-button
-              matSuffix
-              (click)="hide = !hide"
-              [attr.aria-pressed]="hide"
-            >
+            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'" required
+              placeholder="Enter Password" />
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
               <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
             </button>
             <mat-error *ngIf="signinForm.get('password')?.errors?.['required']">
               Password is Required
             </mat-error>
-            <mat-error
-              *ngIf="signinForm.get('password')?.hasError('minlength')"
-            >
+            <mat-error *ngIf="signinForm.get('password')?.hasError('minlength')">
               Password must be at least 6 characters long
             </mat-error>
           </mat-form-field>
         </div>
-        <button
-          style="height: 50px"
-          mat-flat-button
-          color="primary"
-          class="full-width"
-        >
+        <button style="height: 50px" mat-flat-button color="primary" class="full-width">
           Sign In
         </button>
       </form>
