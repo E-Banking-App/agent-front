@@ -24,7 +24,7 @@ export class SigninComponent {
     //if the inputs is valide the formate
     if (this.signinForm.valid) {
 
-      
+
       this.signinService.authenticate(this.signinForm.value).subscribe(
         response => {
           console.log('Client Authenticate:', response);
@@ -32,11 +32,20 @@ export class SigninComponent {
 
           // Assuming the token is returned as 'token' in the response
           const token = response.token;
+          console.log(response.isFirstLogin)
+          console.log(response.id)
+
           console.log(token)
           localStorage.setItem('token', token);//stock the token
+          localStorage.setItem('id', response.id)
 
           // Redirection vers la page de changement de mot de passe
-          this.router.navigateByUrl('/password');
+          if (response.isFirstLogin == true){
+            this.router.navigateByUrl('/password');
+          }
+          else{
+            this.router.navigateByUrl('/home');
+          }
         },
 
         error => {
