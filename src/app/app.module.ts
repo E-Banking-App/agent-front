@@ -18,14 +18,15 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { AuthGuardGuard } from './guards/auth-guard.guard';
 
 const routes: Routes = [
   { path: '', component: SigninComponent },
-  { path: 'password', component: PasswordComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'create-client', component: CreateClientComponent },
-  { path: 'clients', component: ClientsComponent },
-  { path: '**', component: NotfoundComponent },
+  { path: 'password', component: PasswordComponent,canActivate: [AuthGuardGuard] },
+  { path: 'home', component: HomeComponent,canActivate: [AuthGuardGuard] },
+  { path: 'create-client', component: CreateClientComponent,canActivate: [AuthGuardGuard] },
+  { path: 'clients', component: ClientsComponent,canActivate: [AuthGuardGuard] },
+  { path: '**', component: NotfoundComponent,canActivate: [AuthGuardGuard] },
 ];
 
 @NgModule({
