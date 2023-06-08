@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms'
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { Route, Router } from '@angular/router';
 import { PasswordService } from 'src/app/services/password/password.service';
 function passwordMatchValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -25,7 +26,7 @@ function passwordMatchValidator(): ValidatorFn {
 export class PasswordComponent {
   hide = true;
 
-  constructor(private passwordService: PasswordService,  private _snackBar: MatSnackBar) { }
+  constructor(private router: Router, private passwordService: PasswordService, private _snackBar: MatSnackBar) { }
 
   //the id of the client connected
   createdBy_id = localStorage.getItem('id');
@@ -61,6 +62,9 @@ export class PasswordComponent {
 
           this.newPasswordForm.reset()
           this.openSnackBar("Password changed", "Success")
+          //redirecte
+          this.router.navigateByUrl('/home');
+
         },
 
         error => {
