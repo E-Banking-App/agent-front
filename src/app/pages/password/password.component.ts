@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {FormGroup, FormControl, Validators, ValidatorFn, AbstractControl} from '@angular/forms'
-
+import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms'
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { PasswordService } from 'src/app/services/password/password.service';
 function passwordMatchValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const newPassword = control.get('newpassword');
@@ -24,18 +25,50 @@ function passwordMatchValidator(): ValidatorFn {
 export class PasswordComponent {
   hide = true;
 
-  constructor() { }
+  constructor(private passwordService: PasswordService,  private _snackBar: MatSnackBar) { }
 
-  newPasswordForm = new FormGroup( {
-    newpassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
+  //the id of the client connected
+  createdBy_id = localStorage.getItem('id');
+
+  newPasswordForm = new FormGroup({
+    id: new FormControl(this.createdBy_id),
+    newPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
     confirmation: new FormControl('', [Validators.required, Validators.minLength(6)])
   },
-  { validators: passwordMatchValidator() } // Ajoutez la validation personnalisée au groupe de formulaires
-);
-  
+    { validators: passwordMatchValidator() } // Ajoutez la validation personnalisée au groupe de formulaires
+  );
+
+  horizontalPosition: MatSnackBarHorizontalPosition = 'end';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
+  openSnackBar(message: string, type: string) {
+    this._snackBar.open(message, type, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
+  }
 
   onSubmit() {
-    if(this.newPasswordForm.valid) {
+    if (this.newPasswordForm.valid) {
+      console.log(this.newPasswordForm.value);
+
+
+      this.passwordService.changePassword(this.newPasswordForm.value).subscribe(
+        response => {
+          console.log('Client saved:', response);
+          // Handle success if needed
+
+          this.newPasswordForm.reset()
+          this.openSnackBar("Password changed", "Success")
+        },
+
+        error => {
+
+          console.error('Error Changing Password:', error);
+          this.openSnackBar("Something went wrong", "Error")
+        }
+      );
+
       console.log(this.newPasswordForm.value);
     }
   }
