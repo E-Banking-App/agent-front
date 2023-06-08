@@ -4,7 +4,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 import { PasswordService } from 'src/app/services/password/password.service';
 function passwordMatchValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
-    const newPassword = control.get('newpassword');
+    const newPassword = control.get('newPassword');
     const confirmation = control.get('confirmation');
 
     if (newPassword && confirmation && newPassword.value !== confirmation.value) {
@@ -49,6 +49,7 @@ export class PasswordComponent {
   }
 
   onSubmit() {
+    console.log(this.newPasswordForm.valid);
     if (this.newPasswordForm.valid) {
       console.log(this.newPasswordForm.value);
 
@@ -71,5 +72,7 @@ export class PasswordComponent {
 
       console.log(this.newPasswordForm.value);
     }
+
+
   }
 }
