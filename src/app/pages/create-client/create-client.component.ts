@@ -39,8 +39,11 @@ export class CreateClientComponent {
       verticalPosition: this.verticalPosition,
     });
   }
+  //the id of the client connected
+  createdBy_id = localStorage.getItem('id');
 
   clientForm = new FormGroup({
+    createdBy_id: new FormControl(this.createdBy_id),
     ceiling: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required, Validators.minLength(10)]),
     firstName: new FormControl('', [Validators.required]),
@@ -48,7 +51,7 @@ export class CreateClientComponent {
     email: new FormControl('', [Validators.email]),
 
     /////////////////// plafond non ajouté////////////////////////////////////////
-    // plafond: new FormControl('', [Validators.required]),
+    // plafond: new FormCon trol('', [Validators.required]),
 
   })
 
@@ -74,8 +77,10 @@ export class CreateClientComponent {
 
   onSubmit() {
     console.log(this.clientForm.value);
+    
 
-    if (this.clientForm.valid) {
+    
+    if (this.clientForm.valid)  {
 
       this.createClientService.creatClient(this.clientForm.value).subscribe(
         response => {

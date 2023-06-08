@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,12 +8,12 @@ import { HttpClient } from '@angular/common/http';
 export class ClientService {
   constructor(private http: HttpClient) { }
  
-  postClient(data: any) {
-    return this.http.post<any>("http://localhost:8080/client", data)
+  // postClient(data: any) {
+  //   return this.http.post<any>("http://localhost:8080/client", data)
   
-  }
+  // }
 
-  getClients() {
-    return this.http.get<any>("http://localhost:8080/client")
+  getClients() : Observable<any[]>{
+    return this.http.get<any[]>("http://localhost:8080/client")
   }
 }
