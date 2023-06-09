@@ -7,6 +7,7 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { CreateClientService } from 'src/app/services/create-client.service';
+import { Router } from '@angular/router';
 
 interface Account {
   value: number;
@@ -25,7 +26,7 @@ export class CreateClientComponent {
     { value: 20000, viewValue: 'Compte 20000' },
   ];
 
-  constructor(private createClientService: CreateClientService, private _snackBar: MatSnackBar) { }
+  constructor(private router: Router,private createClientService: CreateClientService, private _snackBar: MatSnackBar) { }
 
   hide = true;
 
@@ -86,9 +87,11 @@ export class CreateClientComponent {
         response => {
           console.log('Client saved:', response);
           // Handle success if needed
+          this.router.navigate(['/clients'], { replaceUrl: true });
 
           this.clientForm.reset()
           this.openSnackBar("Client Added Successfully", "Success")
+
         },
 
         error => {
