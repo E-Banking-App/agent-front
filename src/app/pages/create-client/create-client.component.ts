@@ -45,7 +45,7 @@ export class CreateClientComponent {
   clientForm = new FormGroup({
     createdBy_id: new FormControl(this.createdBy_id),
     ceiling: new FormControl('', [Validators.required]),
-    username: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    username: new FormControl('', [Validators.required, Validators.pattern('^[0-9]*$'),Validators.minLength(10)]),
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.email]),

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, AbstractControl } from '@angular/forms'
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
-import { Route, Router } from '@angular/router';
+import { Route, Router,NavigationExtras } from '@angular/router';
 import { PasswordService } from 'src/app/services/password/password.service';
 function passwordMatchValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -24,7 +24,9 @@ function passwordMatchValidator(): ValidatorFn {
 
 
 export class PasswordComponent {
-  hide = true;
+  hidePassword = true;
+  hideConfirmation = true;
+
 
   constructor(private router: Router, private passwordService: PasswordService, private _snackBar: MatSnackBar) { }
 
@@ -50,33 +52,18 @@ export class PasswordComponent {
   }
 
   onSubmit() {
-    console.log(this.newPasswordForm.valid);
     if (this.newPasswordForm.valid) {
-      console.log(this.newPasswordForm.value);
-
-
       this.passwordService.changePassword(this.newPasswordForm.value).subscribe(
         response => {
-          console.log('Client saved:', response);
-          // Handle success if needed
-
-          this.newPasswordForm.reset()
-          this.openSnackBar("Password changed", "Success")
-          //redirecte
-          this.router.navigateByUrl('/home');
-
+          this.newPasswordForm.reset();
+          this.openSnackBar('Password changed', 'Success');
+          this.router.navigate(['/home'], { replaceUrl: true });
         },
-
         error => {
-
           console.error('Error Changing Password:', error);
-          this.openSnackBar("Something went wrong", "Error")
+          this.openSnackBar('Something went wrong', 'Error');
         }
       );
-
-      console.log(this.newPasswordForm.value);
     }
-
-
   }
 }
