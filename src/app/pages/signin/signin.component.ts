@@ -20,47 +20,23 @@ export class SigninComponent {
   })
 
   onSubmit() {
-
-    //if the inputs is valide the formate
     if (this.signinForm.valid) {
-
-
       this.signinService.authenticate(this.signinForm.value).subscribe(
         response => {
-          console.log('Client Authenticate:', response);
-          // Handle success if needed
-
-          // Assuming the token is returned as 'token' in the response
           const token = response.token;
-          console.log(response.isFirstLogin)
-          console.log(response.id)
+          localStorage.setItem('token', token);
+          localStorage.setItem('id', response.id);
 
-          console.log(token)
-          localStorage.setItem('token', token);//stock the token
-          localStorage.setItem('id', response.id)
-
-          // Redirection vers la page de changement de mot de passe
-          if (response.isFirstLogin == true){
-            this.router.navigateByUrl('/password');
-          }
-          else{
-            this.router.navigateByUrl('/home');
+          if (response.isFirstLogin) {
+            this.router.navigate(['/password'], { replaceUrl: true });
+          } else {
+            this.router.navigate(['/home'], { replaceUrl: true });
           }
         },
-
         error => {
           console.error('Error Authenticate client:', error);
-          // Handle error if needed
-
         }
       );
-
-      console.log(this.signinForm.value);
     }
-
-    // if (this.firstLogin) {
-    //   // Redirection vers la page de changement de mot de passe
-    //   this.router.navigateByUrl('/password');
-    // }
   }
 }
