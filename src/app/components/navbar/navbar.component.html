@@ -1,8 +1,17 @@
 <mat-toolbar color="primary" class="navbar">
-  <a class="navbar-link"  routerLink="/home"  routerLinkActive="active-link">Home</a>
+  <a class="navbar-link" routerLink="/home" routerLinkActive="active-link"
+    >Home</a
+  >
   <div>
-    <a class="navbar-link" routerLink="/clients"  routerLinkActive="active-link">Clients</a>
-    <a class="navbar-link"  routerLink="/create-client"  routerLinkActive="active-link">Create Payement Account</a>
-    <button mat-raised-button>Log Out</button>
+    <a class="navbar-link" routerLink="/clients" routerLinkActive="active-link"
+      >Clients</a
+    >
+    <a
+      class="navbar-link"
+      routerLink="/create-client"
+      routerLinkActive="active-link"
+      >Create Payement Account</a
+    >
+    <button mat-raised-button (click)="logout()">Log Out</button>
   </div>
 </mat-toolbar>
